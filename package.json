@@ -9,6 +9,10 @@
     "express": "^4.16.2",
     "next": "4.2.3",
     "react": "16.2.0",
-    "react-dom": "16.2.0"
+    "react-dom": "16.2.0",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-responsive": "^4.3.5",
+    "redux-thunk": "^2.2.0"
   }
 }
