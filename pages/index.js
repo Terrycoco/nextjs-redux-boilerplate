@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Head from 'components/head'
 import Nav from 'components/nav'
 import withRedux from 'next-redux-wrapper';
-import withMui from 'components/withMui';
+import withMui from 'components/hocs/withMui';
 import { bindActionCreators } from 'redux';
 import makeStore from '../store';
 import * as appActions from 'actions/appActions';
