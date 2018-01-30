@@ -10,7 +10,7 @@ import * as appActions from '../actions/appActions';
 
 class App extends Component {
    componentDidMount() {
-     this.props.setDim();
+     this.props.setDim({height: this.props.browser.height, width: this.props.browser.width});
    }
 
    render() {
@@ -26,6 +26,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
+    browser: state.browser,
     height: state.app.height,
     width: state.app.width
   };
