@@ -14,7 +14,10 @@ In addition, I have added setup for:
  git clone https://github.com/Terrycoco/nextjs-redux-boilerplate.git [YOUR APP NAME]
  cd [YOUR APP NAME]
  npm install
+ 
 
+ make it your own:
+ git init
 ```
 
 
@@ -90,7 +93,6 @@ I prefer to organize my stylesheets this way:
   - index.js -- component file
   - mycomponent.scss -- stylesheet for this specific component
 
-
 Then, in the file for the actual component simply write:
 ```
 import stylesheet from './mycomponent.scss';
@@ -100,7 +102,7 @@ import stylesheet from './mycomponent.scss';
 ```
 <style dangerouslySetInnerHtml={{__html: stylesheet}}></style>
 ```
-See the Layout component as an example.
+You can use @import '../someSassOrCssFile' as usual in any Sass file. (You must use relative paths though, unfortunately).  See the Layout component as an example.
 
 ## Using Material-UI
 It's all set up as Higher Order Component (hoc).  To use it add this to a page:
