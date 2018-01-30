@@ -83,12 +83,12 @@ See the section in Next docs about [deployment](https://github.com/zeit/next.js/
 
 I prefer to organize my stylesheets this way:
 
-/styles/
-  all globally used and shared stylesheets go in here
+- /styles/
+  - all globally used and shared stylesheets go in here
 
-/components/MyComponent/
-         /index.js -- component file
-         /mycomponent.scss -- stylesheet for this specific component
+- /components/MyComponent/
+         - /index.js -- component file
+         - /mycomponent.scss -- stylesheet for this specific component
 
 
 Then, in the file for the actual component simply write:
@@ -103,7 +103,7 @@ import stylesheet from './mycomponent.scss';
 See the Layout component as an example.
 
 ## Using Material-UI
-It's all set up in a Higher Order Component.  To use it add this to a page:
+It's all set up as Higher Order Component (hoc).  To use it add this to a page:
 ```
 import withMui from 'components/hocs/withMui';
 ...
