@@ -9,6 +9,7 @@ import makeStore from '../store';
 import * as appActions from 'actions/appActions';
 import Layout from 'components/Layout';
 
+
 class App extends Component {
    componentDidMount()  {
      if ("serviceWorker" in navigator) {
@@ -29,11 +30,13 @@ class App extends Component {
     <Layout>
       <Head title="Home" />
       <Nav />
+
      <p>Hello Nextjs-Redux!!</p>
      <p>{`Your screen dimensions are: 
            ${this.props.height} x ${this.props.width}
            and that is ${this.props.browser.mediaType}
            `}</p>
+
     </Layout>
     );
    }
