@@ -87,8 +87,8 @@ I prefer to organize my stylesheets this way:
   - all globally used and shared stylesheets go in here
 
 - /components/MyComponent/
-         - /index.js -- component file
-         - /mycomponent.scss -- stylesheet for this specific component
+  - index.js -- component file
+  - mycomponent.scss -- stylesheet for this specific component
 
 
 Then, in the file for the actual component simply write:
