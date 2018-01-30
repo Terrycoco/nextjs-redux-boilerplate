@@ -2,10 +2,12 @@
 
 This project was bootstrapped with [Create Next App](https://github.com/segmentio/create-next-app). 
 In addition, I have added setup for:
-- node / express
-- redux / redux-thunk
+- node / express customized server
+- redux / redux-thunk / actions /reducers
 - material-ui (with customized theme)
 - SASS
+- service worker registration at root scope
+- module aliases (no relative paths needed)
 
 ## To Install
 ```
@@ -26,6 +28,7 @@ my-app/
   actions/
   components/
   node_modules/
+  offline/
   pages/
   reducers/
   static/
@@ -35,50 +38,6 @@ my-app/
   next.config.js
   server.js
   store.js
-```
-
-
-WHAT FOLLOWS BELOW IS FROM THE create-next-app REPOSITORY:
-
-Find the most recent version of this guide at [here](https://github.com/segmentio/create-next-app/blob/master/lib/templates/default/README.md). And check out [Next.js repo](https://github.com/zeit/next.js) for the most up-to-date info.
-
-## Table of Contents
-
-- [Questions? Feedback?](#questions-feedback)
-- [Folder Structure](#folder-structure)
-- [Available Scripts](#available-scripts)
-  - [npm run dev](#npm-run-dev)
-  - [npm run build](#npm-run-build)
-  - [npm run start](#npm-run-start)
-- [Using CSS](#using-css)
-- [Adding Components](#adding-components)
-- [Fetching Data](#fetching-data)
-- [Custom Server](#custom-server)
-- [Syntax Highlighting](#syntax-highlighting)
-- [Using the `static` Folder](#using-the-static-folder)
-- [Deploy to Now](#deploy-to-now)
-- [Something Missing?](#something-missing)
-
-## Questions? Feedback?
-
-Check out [Next.js FAQ & docs](https://github.com/zeit/next.js#faq) or [let us know](https://github.com/segmentio/create-next-app/issues) your feedback.
-
-## Folder Structure
-
-After creating an app, it should look something like:
-
-```
-my-app/
-  README.md
-  package.json
-  next.config.js
-  components/
-    head.js
-    nav.js
-  pages/
-    index.js
-  static/
-    favicon.ico
 ```
 
 Routing in Next.js is based on the file system, so `./pages/index.js` maps to the `/` route and
@@ -120,66 +79,62 @@ The application should be compiled with \`next build\` first.
 
 See the section in Next docs about [deployment](https://github.com/zeit/next.js/wiki/Deployment) for more information.
 
-## Using CSS
+## Using SASS / CSS
 
-[`styled-jsx`](https://github.com/zeit/styled-jsx) is bundled with next to provide support for isolated scoped CSS. The aim is to support "shadow CSS" resembling of Web Components, which unfortunately [do not support server-rendering and are JS-only](https://github.com/w3c/webcomponents/issues/71).
+I prefer to organize my stylesheets this way:
 
-```jsx
-export default () => (
-  <div>
-    Hello world
-    <p>scoped!</p>
-    <style jsx>{`
-      p {
-        color: blue;
-      }
-      div {
-        background: red;
-      }
-      @media (max-width: 600px) {
-        div {
-          background: blue;
-        }
-      }
-    `}</style>
-  </div>
-)
+/styles/
+  all globally used and shared stylesheets go in here
+
+/components/MyComponent/
+         /index.js -- component file
+         /mycomponent.scss -- stylesheet for this specific component
+
+
+Then, in the file for the actual component simply write:
+```
+import stylesheet from './mycomponent.scss';
 ```
 
-Read more about [Next's CSS features](https://github.com/zeit/next.js#css).
-
-## Adding Components
-
-We recommend keeping React components in `./components` and they should look like:
-
-### `./components/simple.js`
-
-```jsx
-const Simple = () => (
-  <div>Simple Component</div>
-)
-
-export default Simple // don't forget to export default!
+...and at the bottom of the component  add this:
 ```
+<style dangerouslySetInnerHtml={{__html: stylesheet}}></style>
+```
+See the Layout component as an example.
 
-### `./components/complex.js`
+## Using Material-UI
+It's all set up in a Higher Order Component.  To use it add this to a page:
+```
+import withMui from 'components/hocs/withMui';
+...
+export default withMui(MyComponent);
+```
+The theme.js file under styles/ has a customized theme set up.  Here you can customize all the Material-UI components to your heart's content.  Simply find the component you want to change, uncomment it out and change it to the way you want it to be.
 
-```jsx
-import { Component } from 'react'
+## Connecting to Redux Store
+The store is all set up.  To use it add this to a page:
+``` 
+import withRedux from 'next-redux-wrapper';
+import makeStore from '../store';
+import * as actions from 'actions';
+...
 
-class Complex extends Component {
-  state = {
-    text: 'World'
-  }
-
-  render () {
-    const { text } = this.state
-    return <div>Hello {text}</div>
-  }
+function mapStateToProps(state) {
+  return (
+    whatever: state.whatever
+  );
 }
 
-export default Complex // don't forget to export default!
+export default withRedux(makeStore, mapStateToProps, actions)(withMui(App));
 ```
+
+Then, you can either pass your props down to child components or connect your components to the store using the regular {connect} from react-redux, your choice.
+
+## Module aliases
+I don't like using relative paths if I don't have to (I hate trying to remember ../../..!  So I set up in the .babelrc file at the root all the aliases for different folders.  If you add a folder to your project, add it in there too.
+
+## Service Worker
+I set up a service worker for PWA support.  The service worker file is in the offline/ folder.  Add any url you want to cache locally in that file.
 
 ## Fetching Data
 

@@ -16,7 +16,8 @@
           "reducers": "./reducers",
           "actions": "./actions",
           "utils": "./utils",
-          "images": "./static/images"
+          "images": "./static/images",
+          "offline": "./offline"
         },
         "cwd": "babelrc"
     }],
