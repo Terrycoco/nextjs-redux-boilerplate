@@ -12,7 +12,7 @@ html, body {
 }
 
 html {
-  font-size: 16px;  //THIS IS ROOT ELEMENT!!
+  font-size: 18px;  //ROOT FONT SIZE!
 }
 
 body {
@@ -33,15 +33,15 @@ figcaption {
 .CONTENT {
   font-size: 1em;
   /* equivalent to 16px */
-  line-height: 1.5;
+  line-height: 2.0;
   /* equivalent to 20px */
 }
 
 @media (min-width: 43.75em) {
   .CONTENT {
     font-size: 1em;
-    /* equivalent to 16px */
-    line-height: 1.6;
+    /* 1EM IS EQUIVALENT TO ROOT FONT SIZE*/
+    line-height: 1.8;
     /* equivalent to 22px */
   }
 }

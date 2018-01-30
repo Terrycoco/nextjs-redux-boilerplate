@@ -1,5 +1,6 @@
 const express = require('express')
 const next = require('next')
+const { createReadStream } = require('fs');
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -9,6 +10,11 @@ app.prepare()
 .then(() => {
   const server = express()
 
+  //serves the service worker 
+  server.get('/sw.js', (req, res) => {
+    res.setHeader('content-type', 'text/javascript');
+    createReadStream(__dirname + '/offline/service-worker.js').pipe(res);
+  })
 
  //example of parameterized query
   server.get('/posts/:id', (req, res) => {
