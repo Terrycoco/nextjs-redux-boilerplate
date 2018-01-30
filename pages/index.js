@@ -6,9 +6,12 @@ import withRedux from 'next-redux-wrapper';
 import withMui from '../components/withMui';
 import { bindActionCreators } from 'redux';
 import makeStore from '../store';
+import * as appActions from '../actions/appActions';
 
 class App extends Component {
-
+   componentDidMount() {
+     this.props.setDim();
+   }
 
    render() {
     return (
@@ -21,4 +24,11 @@ class App extends Component {
    }
 }
 
-export default withRedux(makeStore, mapStateToProps, null)(withMui(Walk));
+function mapStateToProps(state) {
+  return {
+    height: state.app.height,
+    width: state.app.width
+  };
+}
+
+export default withRedux(makeStore, mapStateToProps, appActions)(withMui(App));
