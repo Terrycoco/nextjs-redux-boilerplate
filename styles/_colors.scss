@@ -1,0 +1,48 @@
+$deep: #0F1B07;
+$light: #ffffff;
+$green: #5C821A;
+$brightgreen: #C6D166;
+$orange: #fd8258;
+$gray: lighten($deep, 20%);
+$lightgray: lighten(black, 65%);
+$darkorange: #d43511;
+$barelygreen: rgba(198, 209, 102, .1);
+$darkgreen: #406902;
+$shadow: #B4B5B5;
+$blue: #58abfd;
+
+$dark: $deep; 
+$primary: $green; 
+$secondary: $brightgreen;
+$accent: $orange;
+$disabled: $lightgray;
+$highlight: lighten($brightgreen, 30%);
+$selected: lighten($brightgreen, 20%);
+
+hr.accent {
+  border-top: 2px solid $accent;
+}
+
+hr.primary {
+  border-top: 2px solid $gray;
+}
+
+.CONTENT {
+  color: $dark;
+}
+
+a, a:link {
+  color: $accent;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $primary;
+}
+
+// ::selection {
+//   background: $selected; /* WebKit/Blink Browsers */
+// }
+// ::-moz-selection {
+//   background: $selected;  /* Gecko Browsers */
+// }
+

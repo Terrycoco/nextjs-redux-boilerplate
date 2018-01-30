@@ -1,8 +1,8 @@
 var a = require('actions/types').app;
 
 const INITIAL_STATE = {
-  height: null,
-  width: null
+  height: 600,
+  width: 400
 };
 
 
