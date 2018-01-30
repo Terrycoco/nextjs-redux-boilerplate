@@ -2,11 +2,43 @@
 
 This project was bootstrapped with [Create Next App](https://github.com/segmentio/create-next-app). 
 In addition, I have added setup for:
-- express server
+- node / express
 - redux / redux-thunk
-- material-ui
+- material-ui (with customized theme)
+- SASS
 
-THE REST OF THIS IS FROM THE create-next-app repository:
+## To Install
+```
+ git clone https://github.com/Terrycoco/nextjs-redux-boilerplate.git [YOUR APP NAME]
+ cd [YOUR APP NAME]
+ npm install
+
+```
+
+
+## Folder Structure
+
+After creating an app, it should look something like:
+
+```
+my-app/
+  .next/
+  actions/
+  components/
+  node_modules/
+  pages/
+  reducers/
+  static/
+  styles/
+  .babelrc
+  .gitignore
+  next.config.js
+  server.js
+  store.js
+```
+
+
+WHAT FOLLOWS BELOW IS FROM THE create-next-app REPOSITORY:
 
 Find the most recent version of this guide at [here](https://github.com/segmentio/create-next-app/blob/master/lib/templates/default/README.md). And check out [Next.js repo](https://github.com/zeit/next.js) for the most up-to-date info.
 

@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import makeStore from '../store';
 import * as appActions from '../actions/appActions';
 
+
 class App extends Component {
    componentDidMount() {
      this.props.setDim({height: this.props.browser.height, width: this.props.browser.width});
