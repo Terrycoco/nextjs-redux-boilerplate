@@ -133,7 +133,7 @@ export default withRedux(makeStore, mapStateToProps, actions)(withMui(App));
 Then, you can either pass your props down to child components or connect your components to the store using the regular {connect} from react-redux, your choice.
 
 ## Module aliases
-I don't like using relative paths if I don't have to (I hate trying to remember ../../..!  So I set up in the .babelrc file at the root all the aliases for different folders.  If you add a folder to your project, add it in there too.
+I don't like using relative paths if I don't have to (I hate trying to remember ../../..)!  So I set up in the .babelrc file at the root all the aliases for different folders.  If you add a folder to your project, add it in there too.
 
 ## Service Worker
 I set up a service worker for PWA support.  The service worker file is in the offline/ folder.  Add any url you want to cache locally in that file.

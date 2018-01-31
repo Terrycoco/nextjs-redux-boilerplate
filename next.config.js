@@ -1,5 +1,5 @@
 const path = require('path')
-// const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const glob = require('glob');
 
 
@@ -33,6 +33,22 @@ module.exports = {
         ]
       }
     );
+
+    // config.plugins.push(
+    //   new SWPrecacheWebpackPlugin({
+    //     cacheId: 'my-project-name',
+    //     filename: 'my-project-service-worker.js',
+    //     verbose: true,
+    //     mergeStaticsConfig: true,
+    //     staticFileGlobsIgnorePatterns: [/\.next\//],
+    //     runtimeCaching: [
+    //       {
+    //         handler: 'networkFirst',
+    //         urlPattern: /^https?.*/
+    //       }
+    //     ]
+    //   })
+    // );
 
     /**
      * Install and Update our Service worker

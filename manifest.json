@@ -1,0 +1,27 @@
+{
+  "short_name": "YourAppName",
+  "name": "Your Longer App Name",
+  "description": "Your app description",
+  "background_color": "#eee",
+  "display": "standalone",
+  "lang": "en-US",
+  "orientation": "portrait-primary",
+  "theme_color": "#406902",
+  "icons": [
+    {
+      "src": "./icons/icon128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "./icons/icon192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./icons/icon512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

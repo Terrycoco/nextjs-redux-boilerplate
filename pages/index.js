@@ -8,21 +8,12 @@ import { bindActionCreators } from 'redux';
 import makeStore from '../store';
 import * as appActions from 'actions/appActions';
 import Layout from 'components/Layout';
+import registerSW from 'offline/registerSW';
 
 
 class App extends Component {
    componentDidMount()  {
-     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register('sw.js')
-      .then((registration) => {
-        console.log("Service worker registered  with scope ", registration.scope);
-      })
-      .catch(err => {
-        console.error("Service worker registration failed", err);
-      })
-     } else {
-      console.log('Service worker not supported');
-     }
+     registerSW();
    }
 
    render() {
@@ -43,7 +34,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('Store: ', state);
+ // console.log('Store: ', state);
   return {
     browser: state.browser,
     height: state.app.height,

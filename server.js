@@ -1,32 +1,74 @@
-const express = require('express')
-const next = require('next')
+const path = require('path');
+const express = require('express');
+const next = require('next');
 const { createReadStream } = require('fs');
-const port = parseInt(process.env.PORT, 10) || 3000
-const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
-const handle = app.getRequestHandler()
+const port = parseInt(process.env.PORT, 10) || 3000;
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({dir: '.',  dev });
+const handle = app.getRequestHandler();
+const { parse } = require('url');
+console.log('served from: ', __dirname);
+const getRoutes = require('./routes.js');
+const staticDir = './static';
+const manifest = require('./manifest.json');
 
-app.prepare()
-.then(() => {
-  const server = express()
+(async () => {
+  try {
+  require('./static/test');
+  await app.prepare();
+  const server = express();
 
-  //serves the service worker 
-  server.get('/sw.js', (req, res) => {
+  server.get('*', (req, res, next) => {
+    if (req.hostname !== 'localhost' && req.headers['x-forwarded-proto'] != 'https') {
+      res.redirect(`https://${req.hostname}${req.url}`);
+    } else {
+      return next();
+    }
+  });
+
+  //serve the manifest
+  server.get('/manifest.json', (req, res) => {
+    res.setHeader('Cache-Control', 'no-cache');
+    res.sendFile(path.join(__dirname, 'manifest.json'));
+  });
+
+
+  //serve the service worker 
+  server.get('/my-service-worker.js', (req, res) => {
+    res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('content-type', 'text/javascript');
-    createReadStream(__dirname + '/offline/service-worker.js').pipe(res);
-  })
+    createReadStream('my-service-worker.js').pipe(res);
+  });
+
+  server.use("/static", express.static(staticDir, {
+    maxAge: "30d"
+  }));
+
+
+
 
  //example of parameterized query
   server.get('/posts/:id', (req, res) => {
     return app.render(req, res, '/posts', { id: req.params.id })
-  })
+  });
 
   server.get('*', (req, res) => {
+    const parsedUrl = parse(req.url, true);
+    const { pathname, query = {} } = parsedUrl;
+    const route = getRoutes[pathname];
+    if (route) {
+      return app.render(req, res, route.page, route.query);
+    }
     return handle(req, res)
-  })
+  });
 
   server.listen(port, (err) => {
     if (err) throw err
     console.log(`> Ready on http://localhost:${port}`)
-  })
-})
+  });
+} catch (e) {
+  console.error(e);
+  process.exit(1);
+}
+
+})();
