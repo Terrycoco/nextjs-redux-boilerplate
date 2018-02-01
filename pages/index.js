@@ -12,9 +12,11 @@ import registerSW from 'offline/registerSW';
 
 
 class App extends Component {
-   componentDidMount()  {
-     registerSW();
-   }
+
+  
+  componentDidMount()  {
+    registerSW();
+  }
 
    render() {
     return (

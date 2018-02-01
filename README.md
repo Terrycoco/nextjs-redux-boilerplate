@@ -7,7 +7,8 @@ In addition, I have added setup for:
 - material-ui (with customized theme)
 - SASS
 - service worker registration at root scope
-- module aliases (no relative paths needed)
+- module aliases (relative paths normally not needed)
+- file compression
 
 ## To Install
 ```
@@ -38,7 +39,11 @@ my-app/
   styles/
   .babelrc
   .gitignore
+  manifest.json
+  my-service-worker.js
   next.config.js
+  postcss.config.js
+  routes.js
   server.js
   store.js
 ```
@@ -136,5 +141,5 @@ Then, you can either pass your props down to child components or connect your co
 I don't like using relative paths if I don't have to (I hate trying to remember ../../..)!  So I set up in the .babelrc file at the root all the aliases for different folders.  If you add a folder to your project, add it in there too.
 
 ## Service Worker
-I set up a service worker for PWA support.  The service worker file is in the offline/ folder.  Add any url you want to cache locally in that file.
+I set up a service worker at root for PWA support.  Add any url you want to cache locally in that file.  Be sure to customize the manifest.json file at the root with your project specifics.
 
