@@ -11,6 +11,7 @@
     "babel-plugin-module-resolver": "^3.0.0",
     "babel-plugin-transform-assets-import-to-string": "^1.0.1",
     "babel-plugin-wrap-in-js": "^1.1.1",
+    "compression": "^1.7.1",
     "express": "^4.16.2",
     "fs": "0.0.1-security",
     "material-ui": "^0.20.0",

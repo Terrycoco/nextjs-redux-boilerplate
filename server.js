@@ -1,4 +1,5 @@
 const path = require('path');
+const compression = require('compression');
 const express = require('express');
 const next = require('next');
 const { createReadStream } = require('fs');
@@ -17,6 +18,7 @@ const manifest = require('./manifest.json');
   require('./static/test');
   await app.prepare();
   const server = express();
+  server.use(compression());
 
   server.get('*', (req, res, next) => {
     if (req.hostname !== 'localhost' && req.headers['x-forwarded-proto'] != 'https') {
