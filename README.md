@@ -19,6 +19,8 @@ In addition, I have added setup for:
 
  make it your own:
  git init
+ git remote set-url origin http://github.com/[YOUR GITHUB NAME]/[YOUR GITHUB NEW REPOSITORY]
+ 
 ```
 
 

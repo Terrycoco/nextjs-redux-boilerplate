@@ -1,4 +1,4 @@
-import Head from 'components/Header';
+import Head from 'components/Head';
 import Link from 'next/link';
 
 const links = [
