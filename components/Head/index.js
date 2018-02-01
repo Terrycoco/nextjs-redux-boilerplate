@@ -1,6 +1,6 @@
 import NextHead from 'next/head'
 import { string } from 'prop-types'
-
+import AppBar from 'material-ui/AppBar';
 const defaultDescription = ''
 const defaultOGURL = ''
 const defaultOGImage = ''

@@ -38,10 +38,11 @@ class Page extends Component {
     let classname = (this.state.isAbsolute ? "PAGE-ABSOLUTE" : 'PAGE');
     return (
     <div className="APP">
+      <style dangerouslySetInnerHTML={{__html: stylesheet}}></style>
       <div id="page" ref="page" className={classname} style={{height: this.props.height, width: this.props.width, overflowY: 'hidden'}} >
        {this.props.children}
-        <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
       </div>
+     
     </div>
     );
   }

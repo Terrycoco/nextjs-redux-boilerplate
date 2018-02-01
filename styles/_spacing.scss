@@ -1,0 +1,78 @@
+@import './_colors.scss';
+
+$pagebar_height_sm: 40px; 
+$pagebar_height_md: 56px;
+$appbar_height: 2.5rem; 
+$content_height_sm: calc(100vh - #{$pagebar_height_sm});
+$content_height_md: calc(100vh - #{$pagebar_height_md});
+$footer_height_sm: 45px; 
+$footer_height_md: 56px; 
+$content_height_with_footer_sm: calc(#{$content_height_sm} - #{$footer_height_sm} - #{$pagebar_height_sm});
+$content_height_with_footer_md: calc(#{$content_height_md} - #{$footer_height_md} - #{$pagebar_height_md});
+$col_max_width: 650px;  //width for 1 column on wide screens (readability)
+$form_padding: 5%;
+$pagebar_with_header_sm: calc(#{$pagebar_height_sm} + #{$footer_height_sm} );
+$pagebar_with_header_md: calc(#{$pagebar_height_md} + #{$footer_height_md} );
+
+@mixin readable {
+  max-width: $col_max_width;
+}
+
+.readable {
+  width: 100%;
+  max-width: $col_max_width;
+}
+
+
+.noscroll {
+  overflow-y: hidden;
+}
+
+.textbox {
+  white-space: pre-wrap;
+  padding-bottom: 2rem !important;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.textbox p {
+  margin-top: .75em;
+  line-height: 1.7;
+  margin-bottom: .75em;
+  font-size: 1em;
+}
+
+.header {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+%button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  box-sizing: border-box;
+  font-family: Lato, Verdana, sans-serif;
+  border-radius: 2px;
+  min-width: 88px;
+  width: 90%;
+}
+
+.center-text {
+  text-align: center;
+}
+
+hr.primary {
+  border-top: 2px solid $primary;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+hr.underline {
+  border-top: 2px solid $primary;
+  margin-bottom: 1rem;
+  margin-top: .5em;
+}
+

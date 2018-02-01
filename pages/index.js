@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Link from 'next/link'
-import Head from 'components/head'
-import Nav from 'components/nav'
+import Link from 'next/link';
+import Head from 'components/Head';
+import Nav from 'components/Nav';
 import withRedux from 'next-redux-wrapper';
 import withMui from 'components/hocs/withMui';
 import { bindActionCreators } from 'redux';
@@ -9,10 +9,11 @@ import makeStore from '../store';
 import * as appActions from 'actions/appActions';
 import Layout from 'components/Layout';
 import registerSW from 'offline/registerSW';
-
+import Loader from 'components/Loader';
 
 class App extends Component {
-
+  getInitialProps() {
+  }
   
   componentDidMount()  {
     registerSW();
@@ -21,14 +22,11 @@ class App extends Component {
    render() {
     return (
     <Layout>
-      <Head title="Home" />
+      <Head title="Home">
+      </Head>
       <Nav />
 
-     <p>Hello Nextjs-Redux!!</p>
-     <p>{`Your screen dimensions are: 
-           ${this.props.height} x ${this.props.width}
-           and that is ${this.props.browser.mediaType}
-           `}</p>
+     <Loader />
 
     </Layout>
     );

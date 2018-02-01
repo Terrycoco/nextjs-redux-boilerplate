@@ -17,7 +17,8 @@
           "actions": "./actions",
           "utils": "./utils",
           "images": "./static/images",
-          "offline": "./offline"
+          "offline": "./offline",
+          "static": "./static"
         },
         "cwd": "babelrc"
     }],

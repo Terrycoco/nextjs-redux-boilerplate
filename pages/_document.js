@@ -1,13 +1,12 @@
 import * as React from 'react';
-
 import Document, { Head, Main, NextScript } from 'next/document'
-import flush from 'styled-jsx/server'
+// import flush from 'styled-jsx/server'
 
 export default class extends Document {
   static getInitialProps({ renderPage }) {
     const { html, head, errorHtml, chunks } = renderPage()
-    const styles = flush()
-    return { html, head, errorHtml, chunks, styles }
+    // const styles = flush()
+    return { html, head, errorHtml, chunks }
   }
 
   render() {
@@ -15,7 +14,6 @@ export default class extends Document {
       <html lang="en">
         <head>
           <link rel="manifest" href="/manifest.json" />
-
           <meta charSet="utf-8" />
           <meta name="robots" content="index, follow" />
           <meta name="author" content="Author" />
@@ -24,7 +22,7 @@ export default class extends Document {
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="application-name" content="Application" />
           <meta name="apple-mobile-web-app-title" content="Application" />
-          <meta name="theme-color" content="#00b6b2" />
+          <meta name="theme-color" content="#406902" />
           <meta name="msapplication-navbutton-color" content="#00b6b2" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
           <meta name="msapplication-starturl" content="/" />
