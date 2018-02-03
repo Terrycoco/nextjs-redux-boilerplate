@@ -7,3 +7,10 @@ export function setDim(dim) {
     payload: dim
   };
 }
+
+export function setText(text) {
+  return {
+    type: a.SET_TEXT,
+    payload: text
+  };
+}

@@ -2,4 +2,5 @@
 
 export const app = {
   SET_DIM: 'SET_DIM',
+  SET_TEXT: 'SET_TEXT'
 };

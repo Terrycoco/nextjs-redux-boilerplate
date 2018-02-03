@@ -16,13 +16,13 @@ const Nav = () => (
       }
       ul {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
       }
       nav > ul {
         padding: 4px 16px;
       }
       li {
-        display: flex;
+        display: block;
         padding: 6px 8px;
       }
       a {
@@ -37,19 +37,19 @@ const Nav = () => (
           <a>Home</a>
         </Link>
       </li>
-      <ul>
-        {links.map(
-          ({ key, href, label }) => (
-            <li key={key}>
-              <Link href={href}>
-                <a>{label}</a>
-              </Link>
-            </li>
-          )
-        )}
-      </ul>
-    </ul>
+     
+      <li>
+        <Link href="/about">
+          <a>About</a>
+        </Link>
+      </li>
 
+      <li>
+        <Link href="/pageTemplate">
+          <a>NEWPAGE</a>
+        </Link>
+      </li>
+    </ul>
 
   </nav>
 )

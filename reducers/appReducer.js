@@ -11,6 +11,9 @@ export default function(state=INITIAL_STATE, action) {
   switch(action.type) {
     case a.SET_DIM:
       return Object.assign({}, state, {height: action.payload.height, width: action.payload.width});
+    case a.SET_TEXT:
+      return Object.assign({}, state, {textValue: action.payload});
+
   }
   return state;
 }

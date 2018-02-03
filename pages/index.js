@@ -1,22 +1,31 @@
 import React, {Component} from 'react';
-import Link from 'next/link';
 import Head from 'components/Head';
 import Nav from 'components/Nav';
 import withRedux from 'next-redux-wrapper';
 import withMui from 'components/hocs/withMui';
 import { bindActionCreators } from 'redux';
-import makeStore from '../store';
-import * as appActions from 'actions/appActions';
+import initStore from 'root/store';
+import {setDim, setText} from 'actions/appActions';
 import Layout from 'components/Layout';
 import registerSW from 'offline/registerSW';
 import Loader from 'components/Loader';
+import TextField from 'material-ui/TextField';
 
 class App extends Component {
-  getInitialProps() {
+  getInitialProps({ store, isServer}) {
+    return {isServer}
   }
   
   componentDidMount()  {
-    registerSW();
+    if (process.env.NODE_ENV === 'production') {
+      registerSW();
+    }
+  
+   }
+
+  handleChange = (event) => {
+    this.props.setText(event.target.value);
+    event.preventDefault();
   }
 
    render() {
@@ -25,7 +34,12 @@ class App extends Component {
       <Head title="Home">
       </Head>
       <Nav />
-
+      <TextField
+         type="text"
+         id="text-field-controlled"
+         floatingLabelText="Store will persist! Type a value:"
+         value={this.props.textValue}
+         onChange={this.handleChange} />
      <Loader />
 
     </Layout>
@@ -34,12 +48,19 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
- // console.log('Store: ', state);
   return {
     browser: state.browser,
     height: state.app.height,
-    width: state.app.width
+    width: state.app.width,
+    textValue: state.app.textValue
   };
 }
 
-export default withRedux(makeStore, mapStateToProps, appActions)(withMui(App));
+function mapDispatchToProps(dispatch) {
+  return {
+    setDim: bindActionCreators(setDim, dispatch),
+    setText: bindActionCreators(setText, dispatch)
+  }
+}
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(withMui(App));
