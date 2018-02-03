@@ -107,7 +107,7 @@ import stylesheet from './mycomponent.scss';
 
 ...and at the bottom of the component  add this:
 ```
-<style dangerouslySetInnerHtml={{__html: stylesheet}}></style>
+<style dangerouslySetInnerHTML={{__html: stylesheet}}></style>
 ```
 You can use @import '../someSassOrCssFile' as usual in any Sass file. (You must use relative paths though, unfortunately).  See the Layout component as an example.
 
