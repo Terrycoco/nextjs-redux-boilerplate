@@ -5,7 +5,7 @@ import STORAGE from 'root/storage';
 export function initStorage() {
   return function(dispatch, getStore) {
     return new Promise(function(resolve, reject) {
-       STORAGE.init();
+       STORAGE.init()
        .then(() => {
           resolve();
        })
