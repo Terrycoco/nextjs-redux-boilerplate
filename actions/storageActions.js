@@ -11,7 +11,7 @@ export function initStorage() {
 }
 
 
-export function syncStore() {
+export function syncStorage() {
   return function(dispatch, getStore) {
     return new Promise(function(resolve, reject) {
       const store = getStore();

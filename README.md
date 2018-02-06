@@ -47,6 +47,7 @@ my-app/
   postcss.config.js
   routes.js
   server.js
+  storage.js
   store.js
 ```
 
@@ -121,7 +122,7 @@ export default withMui(MyComponent);
 The theme.js file under styles/ has a customized theme set up.  Here you can customize all the Material-UI components to your heart's content.  Simply find the component you want to change, uncomment it out and change it to the way you want it to be.
 
 ## Connecting to Redux Store
-The store is all set up.  To use it add this to a page:
+The store is all set up.  I set it up to persist across pages and also on browser refreshes.  To use it add this to a page:
 ``` 
 import withRedux from 'next-redux-wrapper';
 import makeStore from '../store';
@@ -138,6 +139,7 @@ export default withRedux(makeStore, mapStateToProps, actions)(withMui(App));
 ```
 
 Then, you can either pass your props down to child components or connect your components to the store using the regular {connect} from react-redux, your choice.
+
 
 ## Module aliases
 I don't like using relative paths if I don't have to (I hate trying to remember ../../..)!  So I set up in the .babelrc file at the root all the aliases for different folders.  If you add a folder to your project, add it in there too.

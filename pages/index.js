@@ -6,7 +6,7 @@ import withMui from 'components/hocs/withMui';
 import { bindActionCreators } from 'redux';
 import initStore from 'root/store';
 import {setDim, setText} from 'actions/appActions';
-import {initStorage, syncStore} from 'actions/storageActions';
+import {initStorage, syncStorage} from 'actions/storageActions';
 import Layout from 'components/Layout';
 import registerSW from 'offline/registerSW';
 import Loader from 'components/Loader';
@@ -21,7 +21,7 @@ class App extends Component {
     if (process.env.NODE_ENV === 'production') {
       registerSW();
     }
-    this.props.syncStore();
+    this.props.syncStorage();
   }
 
   componentWillMount() {
@@ -31,7 +31,7 @@ class App extends Component {
   handleChange = (event) => {
     this.props.setText(event.target.value);
     event.preventDefault();
-    this.props.syncStore();
+    this.props.syncStorage(); //persist 
   }
 
    render() {
@@ -67,7 +67,7 @@ function mapDispatchToProps(dispatch) {
     setDim: bindActionCreators(setDim, dispatch),
     setText: bindActionCreators(setText, dispatch),
     initStorage: bindActionCreators(initStorage, dispatch),
-    syncStore: bindActionCreators(syncStore, dispatch)
+    syncStorage: bindActionCreators(syncStorage, dispatch)
   }
 }
 
