@@ -1,9 +1,18 @@
 ## Why another boilerplate?
 
-This project was bootstrapped with [Create Next App](https://github.com/segmentio/create-next-app). 
+This project was bootstrapped with [Create Next App](https://github.com/segmentio/create-next-app).
+Out of the box, we get:
+
+- Automatic transpilation and bundling (with webpack and babel)
+- Hot code reloading
+- Server rendering and indexing of `./pages`
+- Static file serving. `./static/` is mapped to `/static/`
+
+
 In addition, I have added setup for:
 - node / express customized server
 - redux / redux-thunk / actions /reducers
+- persistent storage of redux store across pages and browser refreshes
 - material-ui (with customized theme)
 - SASS
 - service worker registration at root scope
@@ -57,12 +66,7 @@ Routing in Next.js is based on the file system, so `./pages/index.js` maps to th
 The `./static` directory maps to `/static` in the `next` server, so you can put all your
 other static resources like images or compiled CSS in there.
 
-Out of the box, we get:
 
-- Automatic transpilation and bundling (with webpack and babel)
-- Hot code reloading
-- Server rendering and indexing of `./pages`
-- Static file serving. `./static/` is mapped to `/static/`
 
 Read more about [Next's Routing](https://github.com/zeit/next.js#routing)
 
@@ -140,6 +144,8 @@ export default withRedux(makeStore, mapStateToProps, actions)(withMui(App));
 
 Then, you can either pass your props down to child components or connect your components to the store using the regular {connect} from react-redux, your choice.
 
+## Persistent Storage
+The store persists across pages and even browser refreshes.  On each page add this:
 
 ## Module aliases
 I don't like using relative paths if I don't have to (I hate trying to remember ../../..)!  So I set up in the .babelrc file at the root all the aliases for different folders.  If you add a folder to your project, add it in there too.
