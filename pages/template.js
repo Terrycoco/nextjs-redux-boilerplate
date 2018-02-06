@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import initStore from 'root/store';
 import Layout from 'components/Layout';
 import registerSW from 'offline/registerSW';
- //use SyncStorage if you want whatever user does on this page to persist
+ //NOTE: use SyncStorage after mount and if you want whatever user does on this page to persist across browser refreshes
 import { initStorage, syncStorage} from 'actions/storageActions'; 
 
 class NEWPAGE extends Component {

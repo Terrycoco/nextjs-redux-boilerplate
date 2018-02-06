@@ -94,6 +94,9 @@ The application should be compiled with \`next build\` first.
 
 See the section in Next docs about [deployment](https://github.com/zeit/next.js/wiki/Deployment) for more information.
 
+## Page Template
+There is a template file in the /pages section which is all set up with every features.  Simply copy it and then you're good to go.  For further explantion, read on:
+
 ## Using SASS / CSS
 
 I prefer to organize my stylesheets this way:
@@ -126,7 +129,7 @@ export default withMui(MyComponent);
 The theme.js file under styles/ has a customized theme set up.  Here you can customize all the Material-UI components to your heart's content.  Simply find the component you want to change, uncomment it out and change it to the way you want it to be.
 
 ## Connecting to Redux Store
-The store is all set up.  I set it up to persist across pages and also on browser refreshes.  To use it add this to a page:
+The store is all set up.   To use it add this to a page:
 ``` 
 import withRedux from 'next-redux-wrapper';
 import makeStore from '../store';
@@ -145,7 +148,32 @@ export default withRedux(makeStore, mapStateToProps, actions)(withMui(App));
 Then, you can either pass your props down to child components or connect your components to the store using the regular {connect} from react-redux, your choice.
 
 ## Persistent Storage
-The store persists across pages and even browser refreshes.  On each page add this:
+The redux store persists across pages and even browser refreshes.  On each page add this:
+```
+import { initStorage, syncStorage } from 'actions/storageActions';
+import { bindActionCreators } from 'redux';
+...
+
+componentWillMount() {
+  this.props.initStorage();
+}
+commponentDidMount() {
+  this.props.syncStorage();
+}
+
+...
+
+function mapDispatchToProps(dispatch) {
+  return {
+    initStorage: bindActionCreators(initStorage, dispatch),
+    syncStorage: bindActionCreators(syncStorage, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(YourPage)
+```
+If you want something the user does to save to the store AND to the persistent storage, add syncStorage() to that code. 
+
 
 ## Module aliases
 I don't like using relative paths if I don't have to (I hate trying to remember ../../..)!  So I set up in the .babelrc file at the root all the aliases for different folders.  If you add a folder to your project, add it in there too.
