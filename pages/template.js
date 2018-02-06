@@ -47,4 +47,5 @@ function mapDispatchToProps(dispatch) {
     syncStorage: bindActionCreators(syncStorage, dispatch)
   }
 }
+
 export default withRedux(initStore, mapStateToProps = null, mapDispatchToProps )(withMui(NEWPAGE));

@@ -9,7 +9,7 @@ import Layout from 'components/Layout';
 import registerSW from 'offline/registerSW';
 import Loader from 'components/Loader';
 import TextField from 'material-ui/TextField';
-import {initStorage, syncStore} from 'actions/storageActions';
+import {initStorage, syncStorage} from 'actions/storageActions';
 
 class About extends Component {
   static async getInitialProps() {
@@ -19,7 +19,7 @@ class About extends Component {
     if (process.env.NODE_ENV ==='production') {
       registerSW();
     }
-    this.props.syncStore();
+    this.props.syncStorage();
    }
 
   componentWillMount() {
@@ -53,7 +53,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     initStorage: bindActionCreators(initStorage, dispatch),
-    syncStore: bindActionCreators(syncStore, dispatch)
+    syncStorage: bindActionCreators(syncStorage, dispatch)
   }
 }
 
