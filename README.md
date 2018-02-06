@@ -95,7 +95,7 @@ The application should be compiled with \`next build\` first.
 See the section in Next docs about [deployment](https://github.com/zeit/next.js/wiki/Deployment) for more information.
 
 ## Page Template
-There is a template file in the /pages section which is all set up with every features.  Simply copy it and then you're good to go.  For further explantion, read on:
+There is a template file in the /pages section which is all set up.  Simply copy it and then you're good to go.  For further explantion, read on:
 
 ## Using SASS / CSS
 
