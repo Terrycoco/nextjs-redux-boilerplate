@@ -3,7 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import reducers from 'reducers';
 import reduxThunk from 'redux-thunk';
 import { responsiveStoreEnhancer } from 'redux-responsive';
-
+ 
 
 const composeEnhancers = composeWithDevTools({});
 
@@ -15,8 +15,8 @@ const composeEnhancers = composeWithDevTools({});
 * @param {boolean} options.debug User-defined debug mode param
 * @param {string} options.storeKey This key will be used to preserve store in global namespace for safe HMR 
 */
-const makeStore = (initialState, options) => {
-  return createStore(
+function makeStore(initialState, options) {
+  return  createStore(
     reducers,
     initialState,
     composeEnhancers(

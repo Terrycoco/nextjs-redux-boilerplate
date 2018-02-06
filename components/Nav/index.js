@@ -44,11 +44,7 @@ const Nav = () => (
         </Link>
       </li>
 
-      <li>
-        <Link href="/pageTemplate">
-          <a>NEWPAGE</a>
-        </Link>
-      </li>
+
     </ul>
 
   </nav>

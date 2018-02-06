@@ -14,3 +14,4 @@ export function setText(text) {
     payload: text
   };
 }
+

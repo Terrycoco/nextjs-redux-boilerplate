@@ -6,6 +6,7 @@ import withMui from 'components/hocs/withMui';
 import { bindActionCreators } from 'redux';
 import initStore from 'root/store';
 import {setDim, setText} from 'actions/appActions';
+import {initStorage, syncStore} from 'actions/storageActions';
 import Layout from 'components/Layout';
 import registerSW from 'offline/registerSW';
 import Loader from 'components/Loader';
@@ -20,12 +21,17 @@ class App extends Component {
     if (process.env.NODE_ENV === 'production') {
       registerSW();
     }
-  
-   }
+    this.props.syncStore();
+  }
+
+  componentWillMount() {
+    this.props.initStorage();
+  }
 
   handleChange = (event) => {
     this.props.setText(event.target.value);
     event.preventDefault();
+    this.props.syncStore();
   }
 
    render() {
@@ -34,14 +40,14 @@ class App extends Component {
       <Head title="Home">
       </Head>
       <Nav />
+      <p>Store will persist across pages and browser refreshes!</p>
       <TextField
          type="text"
          id="text-field-controlled"
-         floatingLabelText="Store will persist! Type a value:"
+         floatingLabelText="Type a value:"
          value={this.props.textValue}
          onChange={this.handleChange} />
      <Loader />
-
     </Layout>
     );
    }
@@ -59,7 +65,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     setDim: bindActionCreators(setDim, dispatch),
-    setText: bindActionCreators(setText, dispatch)
+    setText: bindActionCreators(setText, dispatch),
+    initStorage: bindActionCreators(initStorage, dispatch),
+    syncStore: bindActionCreators(syncStore, dispatch)
   }
 }
 
