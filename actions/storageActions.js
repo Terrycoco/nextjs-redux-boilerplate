@@ -80,3 +80,11 @@ function setUpdated(ts) {
     payload: ts
   };
 }
+
+export function ageStore(ts) {
+  if (typeof ts !== 'number') {ts = Date.now()}
+  return {
+    type: a.SET_UPDATED,
+    payload: ts
+  };
+}

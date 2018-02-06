@@ -172,8 +172,21 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(YourPage)
 ```
-If you want something the user does to save to the store AND to the persistent storage, add syncStorage() to that code. 
+If you want something the user does to save to the store AND to the persistent storage, add syncStorage() to that code.  SyncStorage looks for the LATEST version of the store and makes sure the stored version and the one in the cache are the same.
 
+In addition, make sure that each reducer you set up has the following ccode:
+```
+const s = require('actions/types').storage; //put this in every reducer
+
+...
+
+    //updates whole store -- put in every reducer with name of reducer
+    case s.SET_STORE: 
+      return action.payload.app;
+
+```
+
+Any time that you want to "age" the redux store to make sure that these values will be saved on the next syncStorage() action, call the ageStore() action from storageActions after you update the store.
 
 ## Module aliases
 I don't like using relative paths if I don't have to (I hate trying to remember ../../..)!  So I set up in the .babelrc file at the root all the aliases for different folders.  If you add a folder to your project, add it in there too.
