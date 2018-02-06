@@ -186,7 +186,7 @@ const s = require('actions/types').storage; //put this in every reducer
 
 ```
 
-Any time that you want to "age" the redux store to make sure that these values will be saved on the next syncStorage() action, call the ageStore() action from storageActions after you update the store.
+Any time that you want to "age" the redux store to make sure that these values will be saved on the next syncStorage() action, either call the ageStore() action from storageActions after you update that value in store, or update the 'updated' value directly to Date.now() if you are in the appReducer.
 
 ## Module aliases
 I don't like using relative paths if I don't have to (I hate trying to remember ../../..)!  So I set up in the .babelrc file at the root all the aliases for different folders.  If you add a folder to your project, add it in there too.
