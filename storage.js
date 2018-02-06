@@ -5,7 +5,7 @@ let STORAGE = {}; //global
 STORAGE.init = () => {
     return new Promise(function(resolve, reject) {
     if (!STORAGE.instance) {
-      console.log('initalize storage..');
+      console.log('initalizing storage...');
       STORAGE.instance = localforage.createInstance({name: "DB"});
     }
     resolve();

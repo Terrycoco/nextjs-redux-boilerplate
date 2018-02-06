@@ -6,6 +6,12 @@ export function initStorage() {
   return function(dispatch, getStore) {
     return new Promise(function(resolve, reject) {
        STORAGE.init();
+       .then(() => {
+          resolve();
+       })
+       .catch(err => {
+          reject(err.message);
+       })
     });
   }
 }
@@ -26,7 +32,10 @@ export function syncStorage() {
           .then(() => {
             dispatch(setUpdated(ts)); //so times will match
             console.log('storage set');
-            resolve();
+            return resolve();
+          })
+          .catch(err => {
+            reject(err.message);
           })
         }
          //store => storage
@@ -38,6 +47,9 @@ export function syncStorage() {
             console.log('storage set');
             resolve();
           })
+           .catch(err => {
+            reject(err);
+           })
         } 
         //storage => store  (user refreshed browser)
         else if (!store.app.updated || (storage.storage.updated > store.app.updated)) {
