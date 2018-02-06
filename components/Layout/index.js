@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
+import registerSW from 'offline/registerSW';
 import { setDim } from 'actions/appActions';
-
+import { initStorage, syncStorage, ageStore } from 'actions/storageActions';
 import stylesheet from './layout.scss';
 
 
@@ -18,7 +19,15 @@ class Page extends Component {
     this.bound_onResize = this.onResize.bind(this);
   }
 
+  componentWillMount() {
+    if (process.env.NODE_ENV ==='production') {
+      registerSW();
+    }
+    this.props.initStorage();
+  }
+
   componentDidMount() {
+    this.props.syncStorage();
     this.bound_onResize();
     window.addEventListener('resize', this.bound_onResize);
   }
@@ -50,7 +59,9 @@ class Page extends Component {
 
 function mapDispatchToProps(dispatch)  {
   return {
-    setDim: bindActionCreators(setDim, dispatch)
+    setDim: bindActionCreators(setDim, dispatch),
+    initStorage: bindActionCreators(initStorage, dispatch),
+    syncStorage: bindActionCreators(syncStorage, dispatch)
   }
 }
 

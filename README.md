@@ -117,10 +117,10 @@ import stylesheet from './mycomponent.scss';
 ```
 <style dangerouslySetInnerHTML={{__html: stylesheet}}></style>
 ```
-You can use @import '../someSassOrCssFile' as usual in any Sass file. (You must use relative paths though, unfortunately).  See the Layout component as an example.
+You can use @import '../someSassOrCssFile' as usual in any Sass file. (You must use relative paths though, unfortunately).  The Layout component,which is wrapped around each top-level page, has a corresponding stylesheet 'layout.scss'.  Here is where you would import any stylesheets to use globally.
 
 ## Using Material-UI
-It's all set up as Higher Order Component (hoc).  To use it add this to a page:
+It's all set up as Higher Order Component (hoc).  To use it add this to a page (top-level only):
 ```
 import withMui from 'components/hocs/withMui';
 ...
@@ -148,33 +148,15 @@ export default withRedux(makeStore, mapStateToProps, actions)(withMui(App));
 Then, you can either pass your props down to child components or connect your components to the store using the regular {connect} from react-redux, your choice.
 
 ## Persistent Storage
-The redux store persists across pages and even browser refreshes.  On each page add this:
+The redux store persists across pages and even browser refreshes. Simply wrap each top-level page in the Layout component:
 ```
-import { initStorage, syncStorage } from 'actions/storageActions';
-import { bindActionCreators } from 'redux';
-...
-
-componentWillMount() {
-  this.props.initStorage();
-}
-commponentDidMount() {
-  this.props.syncStorage();
-}
-
-...
-
-function mapDispatchToProps(dispatch) {
-  return {
-    initStorage: bindActionCreators(initStorage, dispatch),
-    syncStorage: bindActionCreators(syncStorage, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(YourPage)
+<Layout>
+... your page stuff
+</Layout>
 ```
 If you want something the user does to save to the store AND to the persistent storage, add syncStorage() to that code.  SyncStorage looks for the LATEST version of the store and makes sure the stored version and the one in the cache are the same.
 
-In addition, make sure that each reducer you set up has the following ccode:
+In addition, make sure that each reducer you set up has the following code:
 ```
 const s = require('actions/types').storage; //put this in every reducer
 

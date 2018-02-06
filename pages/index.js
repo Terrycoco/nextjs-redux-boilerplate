@@ -6,9 +6,9 @@ import withMui from 'components/hocs/withMui';
 import { bindActionCreators } from 'redux';
 import initStore from 'root/store';
 import {setDim, setText} from 'actions/appActions';
-import {initStorage, syncStorage} from 'actions/storageActions';
+import { syncStorage} from 'actions/storageActions';
 import Layout from 'components/Layout';
-import registerSW from 'offline/registerSW';
+// import registerSW from 'offline/registerSW';
 import Loader from 'components/Loader';
 import TextField from 'material-ui/TextField';
 
@@ -18,14 +18,14 @@ class App extends Component {
   }
   
   componentDidMount()  {
-    if (process.env.NODE_ENV === 'production') {
-      registerSW();
-    }
-    this.props.syncStorage();
+    // if (process.env.NODE_ENV === 'production') {
+    //   registerSW();
+    // }
+    // this.props.syncStorage();
   }
 
   componentWillMount() {
-    this.props.initStorage();
+    // this.props.initStorage();
   }
 
   handleChange = (event) => {
@@ -66,8 +66,8 @@ function mapDispatchToProps(dispatch) {
   return {
     setDim: bindActionCreators(setDim, dispatch),
     setText: bindActionCreators(setText, dispatch),
-    initStorage: bindActionCreators(initStorage, dispatch),
-    syncStorage: bindActionCreators(syncStorage, dispatch)
+    // initStorage: bindActionCreators(initStorage, dispatch),
+    // syncStorage: bindActionCreators(syncStorage, dispatch)
   }
 }
 
