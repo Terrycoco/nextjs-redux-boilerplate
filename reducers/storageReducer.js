@@ -1,4 +1,3 @@
-var a = require('actions/types').app;
 var s = require('actions/types').storage;
 
 const INITIAL_STATE = {
