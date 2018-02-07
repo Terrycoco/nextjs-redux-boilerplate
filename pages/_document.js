@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Document, { Head, Main, NextScript } from 'next/document'
-// import flush from 'styled-jsx/server'
+
 
 export default class extends Document {
   static getInitialProps({ renderPage }) {
@@ -35,6 +35,7 @@ export default class extends Document {
         <body>
           <Main />
           <NextScript />
+
         </body>
       </html>
     );

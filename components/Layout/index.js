@@ -20,13 +20,13 @@ class Page extends Component {
   }
 
   componentWillMount() {
+  }
+
+  componentDidMount() {
     if (process.env.NODE_ENV ==='production') {
       registerSW();
     }
     this.props.initStorage();
-  }
-
-  componentDidMount() {
     this.props.syncStorage();
     this.bound_onResize();
     window.addEventListener('resize', this.bound_onResize);

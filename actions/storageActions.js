@@ -31,7 +31,7 @@ export function syncStorage() {
           STORAGE.setStore(store)
           .then(() => {
             dispatch(setUpdated(ts)); //so times will match
-            console.log('storage set');
+            console.log('storage updated from store');
             return resolve();
           })
           .catch(err => {
@@ -44,7 +44,7 @@ export function syncStorage() {
            store.storage.updated = store.app.updated;
            STORAGE.setStore(store)
            .then(() => {
-            console.log('storage set');
+             console.log('storage updated from store');
             resolve();
           })
            .catch(err => {
@@ -56,13 +56,19 @@ export function syncStorage() {
               storage.app.updated = storage.storage.updated;
               console.log('storage later than store');
               dispatch(setWholeStore(storage));
+               console.log('store updated from storage');
               resolve();
         }
-        else {
-          reject('There was a storage error');
+        else if (store.app.updated === storage.storage.updated) {
+          console.log('storage is in sync');
+          resolve();
         }
       
       })
+      .catch(err => {
+        console.error('storage err: ', err);
+        reject(err.message);
+      });
     });
   }
 }

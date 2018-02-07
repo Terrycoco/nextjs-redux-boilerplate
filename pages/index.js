@@ -8,7 +8,6 @@ import initStore from 'root/store';
 import {setDim, setText} from 'actions/appActions';
 import { syncStorage} from 'actions/storageActions';
 import Layout from 'components/Layout';
-// import registerSW from 'offline/registerSW';
 import Loader from 'components/Loader';
 import TextField from 'material-ui/TextField';
 
@@ -18,14 +17,10 @@ class App extends Component {
   }
   
   componentDidMount()  {
-    // if (process.env.NODE_ENV === 'production') {
-    //   registerSW();
-    // }
-    // this.props.syncStorage();
+
   }
 
   componentWillMount() {
-    // this.props.initStorage();
   }
 
   handleChange = (event) => {
@@ -54,6 +49,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('store: ', state);
   return {
     browser: state.browser,
     height: state.app.height,
@@ -66,8 +62,7 @@ function mapDispatchToProps(dispatch) {
   return {
     setDim: bindActionCreators(setDim, dispatch),
     setText: bindActionCreators(setText, dispatch),
-    // initStorage: bindActionCreators(initStorage, dispatch),
-    // syncStorage: bindActionCreators(syncStorage, dispatch)
+    syncStorage: bindActionCreators(syncStorage, dispatch)
   }
 }
 

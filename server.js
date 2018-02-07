@@ -36,10 +36,12 @@ const manifest = require('./manifest.json');
 
 
   //serve the service worker 
-  server.get('/my-service-worker.js', (req, res) => {
+  server.get('/service-worker.js', (req, res) => {
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('content-type', 'text/javascript');
-    createReadStream('my-service-worker.js').pipe(res);
+    let file = path.join(__dirname, '.next', '/service-worker.js');
+    //createReadStream(file).pipe(res);
+    app.serveStatic(req, res, file);
   });
 
   server.use("/static", express.static(staticDir, {

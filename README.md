@@ -51,7 +51,6 @@ my-app/
   .babelrc
   .gitignore
   manifest.json
-  my-service-worker.js
   next.config.js
   postcss.config.js
   routes.js
@@ -174,5 +173,5 @@ Any time that you want to "age" the redux store to make sure that these values w
 I don't like using relative paths if I don't have to (I hate trying to remember ../../..)!  So I set up in the .babelrc file at the root all the aliases for different folders.  If you add a folder to your project, add it in there too.
 
 ## Service Worker
-I set up a service worker at root for PWA support.  Add any url you want to cache locally in that file.  Be sure to customize the manifest.json file at the root with your project specifics.
+Using webpack's SWPrecache Plugin, I set up a service worker at root for PWA support.  It is automatically registered on every page load through the Layout component.  Be sure to customize the manifest.json file at the root with your project specifics.
 
