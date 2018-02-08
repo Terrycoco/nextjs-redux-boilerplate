@@ -5,7 +5,7 @@ export default async function registerSW() {
       try {
         const registration = await navigator.serviceWorker.getRegistration('/');
         if (!registration) {
-          await navigator.serviceWorker.register('/service-worker.js', {
+          await navigator.serviceWorker.register('/my-service-worker.js', {
             scope: '/'
           });
 

@@ -15,8 +15,8 @@ In addition, I have added setup for:
 - persistent storage of redux store across pages and browser refreshes
 - material-ui (with customized theme)
 - SASS
-- service worker registration at root scope
-- module aliases (relative paths normally not needed)
+- service worker registration at root scope for offline capability
+- module aliases (relative paths not needed in modules)
 - file compression
 
 ## To Install
@@ -30,6 +30,10 @@ In addition, I have added setup for:
  git init
  git remote set-url origin http://github.com/[YOUR GITHUB NAME]/[YOUR GITHUB NEW REPOSITORY]
  
+
+ test it out:
+ npm run dev
+
 ```
 
 
@@ -51,6 +55,7 @@ my-app/
   .babelrc
   .gitignore
   manifest.json
+  my-service-worker.js
   next.config.js
   postcss.config.js
   routes.js
@@ -173,5 +178,8 @@ Any time that you want to "age" the redux store to make sure that these values w
 I don't like using relative paths if I don't have to (I hate trying to remember ../../..)!  So I set up in the .babelrc file at the root all the aliases for different folders.  If you add a folder to your project, add it in there too.
 
 ## Service Worker
-Using webpack's SWPrecache Plugin, I set up a service worker at root for PWA support.  It is automatically registered on every page load through the Layout component.  Be sure to customize the manifest.json file at the root with your project specifics.
+I set up a service worker at root (my-service-worker.js).
+1. Any time that you add a page, add the url to the cache of the my-service-worker.js file in the install event and change the version number.
+2. Be sure to customize the manifest.json file at the root with your project specifics, such as your project name and icons.
+
 

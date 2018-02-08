@@ -1,5 +1,6 @@
 module.exports = () => {
   return {
-    '/': { page: '/'}
+    '/': { page: '/'},
+    '/about': { page: '/about'}
   }
 }
