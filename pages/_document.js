@@ -35,7 +35,6 @@ export default class extends Document {
         <body>
           <Main />
           <NextScript />
-
         </body>
       </html>
     );

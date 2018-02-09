@@ -34,7 +34,13 @@ const manifest = require('./manifest.json');
     res.sendFile(path.join(__dirname, 'manifest.json'));
   });
 
-
+  //serve the sw-toolbox
+  server.get('/sw-toolbox.js', (req, res) => {
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('content-type', 'text/javascript');
+    let file = path.join(__dirname,  'node_modules', 'sw-toolbox', 'sw-toolbox.js');
+    res.sendFile(file);
+  });
   //serve the service worker 
   server.get('/my-service-worker.js', (req, res) => {
     res.setHeader('Cache-Control', 'no-cache');
@@ -51,8 +57,8 @@ const manifest = require('./manifest.json');
 
 
  //example of parameterized query
-  server.get('/posts/:id', (req, res) => {
-    return app.render(req, res, '/posts', { id: req.params.id })
+  server.get('/about/:id', (req, res) => {
+    return app.render(req, res, '/about', { id: req.params.id })
   });
 
   server.get('*', (req, res) => {

@@ -7,7 +7,7 @@ import { initStorage, syncStorage, ageStore } from 'actions/storageActions';
 import stylesheet from './layout.scss';
 
 
-class Page extends Component {
+class Shell extends Component {
   getInitialProps() {
     
   }
@@ -72,4 +72,4 @@ function mapStoreToProps(store) {
   };
 }
 
-export default connect(mapStoreToProps, mapDispatchToProps)(Page);
+export default connect(mapStoreToProps, mapDispatchToProps)(Shell);

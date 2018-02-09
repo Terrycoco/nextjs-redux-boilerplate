@@ -8,10 +8,18 @@ import { bindActionCreators } from 'redux';
 import Layout from 'components/Layout';
 import Loader from 'components/Loader';
 import TextField from 'material-ui/TextField';
-
+import axios from 'axios';
 
 class About extends Component {
-  static async getInitialProps() {
+  static async getInitialProps(ctx) {
+    const {req} = ctx;
+    const {store} = ctx;
+    const {isServer} = ctx;
+    const id = ctx.query.id;
+    const response = await axios.get(`https://api.sharewalks.com/walk/${id}`);
+    const walk = response.data;
+   // store.dispatch(setWalk(walk));
+    return { id: id, walk: walk }
   }
   
   componentDidMount()  {
@@ -26,6 +34,7 @@ class About extends Component {
       <Head title="About">
       </Head>
       <Nav />
+      <p>{"ID: " + this.props.id + ' ' + this.props.walk.title}</p>
       <p>Here is the value:</p> 
       {this.props.textValue}
      <Loader />

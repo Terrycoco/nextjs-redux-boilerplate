@@ -39,11 +39,16 @@ const Nav = () => (
       </li>
      
       <li>
-        <Link href="/about">
+        <Link href="/about" >
           <a>About</a>
         </Link>
       </li>
 
+      <li>
+        <Link href="/about?id=3" >
+          <a>About With ID</a>
+        </Link>
+      </li>
 
     </ul>
 
