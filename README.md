@@ -121,7 +121,7 @@ import stylesheet from './mycomponent.scss';
 ```
 <style dangerouslySetInnerHTML={{__html: stylesheet}}></style>
 ```
-You can use @import '../someSassOrCssFile' as usual in any Sass file. (You must use relative paths though, unfortunately).  The Layout component,which is wrapped around each top-level page, has a corresponding stylesheet 'layout.scss'.  Here is where you would import any stylesheets to use globally.
+You can use @import '../someSassOrCssFile' as usual in any Sass file. (You must use relative paths though, unfortunately).  The Shell component,which is wrapped around each top-level page, has a corresponding stylesheet 'layout.scss'.  Here is where you would import any stylesheets to use globally.
 
 ## Using Material-UI
 It's all set up as Higher Order Component (hoc).  To use it add this to a page (top-level only):
@@ -152,11 +152,11 @@ export default withRedux(makeStore, mapStateToProps, actions)(withMui(App));
 Then, you can either pass your props down to child components or connect your components to the store using the regular {connect} from react-redux, your choice.
 
 ## Persistent Storage
-The redux store persists across pages and even browser refreshes. Simply wrap each top-level page in the Layout component:
+The redux store persists across pages and even browser refreshes. Simply wrap each top-level page in the Shell component:
 ```
-<Layout>
+<Shell>
 ... your page stuff
-</Layout>
+</Shell>
 ```
 If you want something the user does to save to the store AND to the persistent storage, add syncStorage() to that code.  SyncStorage looks for the LATEST version of the store and makes sure the stored version and the one in the cache are the same.
 
@@ -181,5 +181,4 @@ I don't like using relative paths if I don't have to (I hate trying to remember 
 I set up a service worker at root (my-service-worker.js).
 1. Any time that you add a page, add the url to the cache of the my-service-worker.js file in the install event and change the version number.
 2. Be sure to customize the manifest.json file at the root with your project specifics, such as your project name and icons.
-
 

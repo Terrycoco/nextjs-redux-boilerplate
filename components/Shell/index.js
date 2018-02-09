@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import registerSW from 'offline/registerSW';
 import { setDim } from 'actions/appActions';
 import { initStorage, syncStorage, ageStore } from 'actions/storageActions';
-import stylesheet from './layout.scss';
+import stylesheet from './shell.scss';
 
 
 class Shell extends Component {

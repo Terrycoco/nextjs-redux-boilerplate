@@ -5,7 +5,7 @@ import withRedux from 'next-redux-wrapper';
 import withMui from 'components/hocs/withMui';
 import { bindActionCreators } from 'redux';
 import initStore from 'root/store';
-import Layout from 'components/Layout';
+import Shell from 'components/Shell';
 
 
 class NEWPAGE extends Component {
@@ -21,12 +21,12 @@ class NEWPAGE extends Component {
 
   render() {
     return (
-    <Layout>
+    <Shell>
       <Head title="NEWPAGE" />
       <Nav />
        Use this as a template to add new pages
 
-    </Layout>
+    </Shell>
     );
    }
 }
